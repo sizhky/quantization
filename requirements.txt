@@ -6,3 +6,6 @@ lovely-tensors
 nvidia-pyindex
 nvidia-tensorrt
 faiss-gpu
+uvicorn
+fastapi
+python-multipart

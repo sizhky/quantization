@@ -9,3 +9,6 @@ fp16-benchmark:
 
 int8-benchmark:
 	python -m src.defect_classification.int8_benchmark
+
+serve:
+	uvicorn server.server:app --reload

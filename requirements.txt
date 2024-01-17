@@ -1,0 +1,8 @@
+torch-snippets
+tensorrt
+torch_tensorrt
+datasets
+lovely-tensors
+nvidia-pyindex
+nvidia-tensorrt
+faiss-gpu

@@ -6,7 +6,7 @@ import time
 from .train import process_example, DefectsDataset
 
 def get_roc_auc_score(model):
-    Info("Started computing roc auc score...")
+    print("Started computing roc auc score...")
     predictions, actuals = [], []
 
     val_ds = load_dataset('sizhkhy/kolektor_sdd2', split="valid[:50]+valid[-50:]")
@@ -23,13 +23,13 @@ def get_roc_auc_score(model):
 
     actuals = flatten(actuals)
     predictions = flatten(predictions)
-    Info(f"ROC AUC Score: {roc_auc_score(actuals, predictions):.2f}")
+    print(f"ROC AUC Score: {roc_auc_score(actuals, predictions):.2f}")
 
 
 @torch.no_grad()
 def benchmark(model, input_shape=(1024, 3, 32, 32), nwarmup=5, nruns=100):
     model.eval()
-    Info("Started benchmarks...")
+    print("Started benchmarks...")
     input_data = torch.randn(input_shape)
     input_data = input_data.to("cuda")
     for _ in range(nwarmup):
@@ -43,7 +43,7 @@ def benchmark(model, input_shape=(1024, 3, 32, 32), nwarmup=5, nruns=100):
         end_time = time.perf_counter()
         timings.append(end_time - start_time)
     timing = np.mean(timings)*1000
-    Info(f'Average batch time: {timing:.2f} ms')
+    print(f'Average batch time: {timing:.2f} ms')
 
 
 if __name__ == '__main__':

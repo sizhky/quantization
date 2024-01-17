@@ -98,7 +98,7 @@ def main(DEBUG=True):
         train_epoch_loss = np.array(train_epoch_losses).mean()
         if epoch % 10 == 0: print(f'Epoch: {epoch+1} {train_epoch_loss=:.3f}')
     torch.save(model, 'model.pth')
-    Info(f"Saved model to model.pth")
+    print(f"Saved model to model.pth")
 
 
 if __name__ == '__main__':

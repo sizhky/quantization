@@ -5,7 +5,7 @@ from .basic_benchmark import benchmark, get_roc_auc_score
 if __name__ == '__main__':
     model = torch.load('model.pth').eval()
     input_shape = (32,3,224,224)
-    Info(f'Loading trt model...')
+    print(f'Loading trt model...')
     trt_model_hp = torch_tensorrt.compile(
         model,
         inputs= [torch_tensorrt.Input(input_shape)],

@@ -28,7 +28,6 @@ def get_roc_auc_score(model):
 
 @torch.no_grad()
 def benchmark(model, input_shape=(1024, 3, 32, 32), nwarmup=5, nruns=100):
-    model.eval()
     print("Started benchmarks...")
     input_data = torch.randn(input_shape)
     input_data = input_data.to("cuda")

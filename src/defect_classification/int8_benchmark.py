@@ -27,12 +27,5 @@ if __name__ == '__main__':
    }
 
    trt_ptq = torch_tensorrt.compile(model, **compile_spec)
-   trt_model_hp = torch_tensorrt.compile(
-      model,
-      inputs= [torch_tensorrt.Input(input_shape)],
-      enabled_precisions= {torch_tensorrt.dtype.half} # Run with FP16
-   )
-   get_roc_auc_score(model)
-   benchmark(trt_model_hp, input_shape=(32,3,224,224), nwarmup=50, nruns=100)
-
-
+   get_roc_auc_score(trt_ptq)
+   benchmark(trt_ptq, input_shape=(32,3,224,224), nwarmup=50, nruns=100)

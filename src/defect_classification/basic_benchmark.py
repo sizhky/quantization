@@ -17,7 +17,10 @@ def get_roc_auc_score(model):
 
     for ix, batch in enumerate(iter(val_dl)):
         x, y = batch
-        prediction = model(x.cuda()).detach().cpu().numpy().tolist()
+        if isinstance(model, nn.Module):
+          prediction = model(x.cuda()).detach().cpu().numpy().tolist()
+        else: # half/int8 model
+          prediction = model(x.cuda())[0].detach().cpu().numpy().tolist()
         predictions.extend(prediction)
         actuals.extend(y.detach().cpu().numpy().tolist())
 
@@ -27,7 +30,7 @@ def get_roc_auc_score(model):
 
 
 @torch.no_grad()
-def benchmark(model, input_shape=(1024, 3, 32, 32), nwarmup=5, nruns=100):
+def benchmark(model, input_shape=(32, 3, 32, 32), nwarmup=5, nruns=100):
     print("Started benchmarks...")
     input_data = torch.randn(input_shape)
     input_data = input_data.to("cuda")

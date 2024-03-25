@@ -11,5 +11,5 @@ if __name__ == '__main__':
         inputs= [torch_tensorrt.Input(input_shape)],
         enabled_precisions= {torch_tensorrt.dtype.half} # Run with FP16
     )
-    get_roc_auc_score(model)
+    get_roc_auc_score(trt_model_hp)
     benchmark(trt_model_hp)

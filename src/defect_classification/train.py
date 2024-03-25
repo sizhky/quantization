@@ -83,7 +83,8 @@ def get_datasets(DEBUG):
     val_ds = ds['valid']
     return trn_ds, val_ds
 
-def main(DEBUG=True):
+def main():
+    DEBUG = os.environ.get('DEBUG', False)
     model, criterion, optimizer = get_model()
     trn_ds, val_ds = get_datasets(DEBUG)
     trn_dl, val_dl = get_dataloaders(trn_ds, val_ds)

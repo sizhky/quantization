@@ -9,4 +9,4 @@ faiss-gpu
 uvicorn
 fastapi
 python-multipart
-torchvision=="0.18.0+cu121"
+torchvision=="0.18.0"
